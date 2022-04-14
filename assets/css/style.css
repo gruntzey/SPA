@@ -1,0 +1,49 @@
+:root {
+  --max-content-width: 1792px;
+  --color-active: #2168DE;
+  --color-inactive: #AFB3BB;
+  --color-main-dark: #333333;
+  --color-main-background: #fff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: var(--color-main-dark);
+  background-color: var(--color-main-background);
+}
+
+html {
+  overflow-x: hidden;
+}
+
+.wrapper {
+  width: 100%;
+  min-height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hidden {
+  display: none;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.removed {
+  display: none;
+}
+
+.cloaked {
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.overflowAllowed {
+  overflow: auto;
+}
+
