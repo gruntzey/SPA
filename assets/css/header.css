@@ -58,10 +58,6 @@ header::after {
   color: inherit;
 }
 
-.header__menu-items > li:hover {
-  color: var(--color-active);
-}
-
 .header__menu-items > li > img  {
   display: none;
 }
@@ -76,26 +72,6 @@ header::after {
 
 .header__menu-items > li:last-child > img {
   display: initial;
-}
-
-
-
-.header__menu-items > li:last-child:hover .header__submenu-items  {
-  opacity: initial;
-  pointer-events: initial;
-  visibility: initial;
-}
-
-.header__menu-items > li:last-child:hover .header__submenu-item > img  {
-  display: none;
-}
-
-.header__menu-items > li:last-child:hover img {
-  transform: rotate(180deg);
-}
-
-.header__menu-items > li:last-child:hover .header__submenu-item:hover  {
-  color: var(--color-active);
 }
 
 .header__menu-items > li:last-child > span {
@@ -134,9 +110,45 @@ header .active-item {
   cursor: pointer;
 }
 
-.icon-bell:hover {
-  color: var(--color-active);
-  opacity: 0.5;
+
+@media (hover: hover) {
+  .header__menu-items > li:hover {
+    color: var(--color-active);
+  }
+  
+  .header__menu-items > li:last-child:hover img {
+    transform: rotate(180deg);
+  }
+
+  .header__menu-items > li:last-child:hover .header__submenu-items  {
+    opacity: initial;
+    pointer-events: initial;
+    visibility: initial;
+  }
+
+  .header__menu-items > li:last-child:hover .header__submenu-item > img  {
+    display: none;
+  }
+
+  .header__menu-items > li:last-child:hover .header__submenu-item:hover  {
+    color: var(--color-active);
+  }
+
+  .icon-bell:hover {
+    color: var(--color-active);
+    opacity: 0.5;
+  }
+
+  .icon-favourite:hover {
+    color: var(--color-active);
+    opacity: 0.5;
+  }
+
+  .header__border-button:hover {
+    background-color: var(--color-main-background);
+    color: var(--color-active);
+    border-color: var(--color-active);
+  }
 }
 
 .icon-favourite {
@@ -145,23 +157,11 @@ header .active-item {
   cursor: pointer
 }
 
-.icon-favourite:hover {
-  color: var(--color-active);
-  opacity: 0.5;
-}
-
-
 .header__border-button {
   padding: 8px 16px;
   border-radius: 10px;
   border: 1px solid var(--color-inactive);
   cursor: pointer;
-}
-
-.header__border-button:hover {
-  background-color: var(--color-main-background);
-  color: var(--color-active);
-  border-color: var(--color-active);
 }
 
 .header__border-button:active {
@@ -265,9 +265,11 @@ header .active-item {
     justify-content: space-between;
   }
 
-  .header__menu-items > li:last-child:hover .header__submenu-item > img {
-    display: initial;
-    transform: rotate(-90deg);
+  @media (hover: hover) {
+    .header__menu-items > li:last-child:hover .header__submenu-item > img {
+      display: initial;
+      transform: rotate(-90deg);
+    }
   }
 
   .header__menu-items > li:last-child > img {
