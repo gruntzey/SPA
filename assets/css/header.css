@@ -9,6 +9,7 @@ header {
   z-index: 50;
   white-space: nowrap;
   user-select: none;
+  margin-bottom: 51px;
 }
 
 header::after {
@@ -22,7 +23,7 @@ header::after {
 
 .header__container {
   max-width: var(--max-content-width);
-  margin: 0 64px;
+  margin: 0 calc((1920px - var(--max-content-width))/2);
   height: 100%;
 
   display: flex;
@@ -79,14 +80,10 @@ header::after {
   color: var(--color-inactive);
 }
 
-header .active-item {
-  color: var(--color-active);
-}
-
 .header__logo {
   font-weight: 800;
-  font-size: 24px;
-  padding-right: 64px;
+  font-size: 22px;
+  margin-right: 64px;
 }
 
 .header__right {
@@ -105,7 +102,7 @@ header .active-item {
 }
 
 .icon-bell {
-  font-size: 20px;
+  font-size: 22px;
   color: var(--color-inactive);
   cursor: pointer;
 }
@@ -152,7 +149,7 @@ header .active-item {
 }
 
 .icon-favourite {
-  font-size: 20px;
+  font-size: 22px;
   color: var(--color-inactive);
   cursor: pointer
 }
@@ -215,9 +212,6 @@ header .active-item {
 
   .header__container {
     margin: 0 16px;
-  }
-  .header__logo {
-    font-size: 30px;
   }
 
   .header__menu-items, .header__submenu-items {
@@ -297,14 +291,6 @@ header .active-item {
 
   .header__right > div {
     margin-right: 16px;
-  }
-
-  .icon-bell {
-    font-size: 24px;
-  }
-  
-  .icon-favourite {
-    font-size: 24px;
   }
 
   /* burger zone */

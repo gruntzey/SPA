@@ -1,3 +1,6 @@
+import { resetActiveElement } from "../script.js"
+import { setAllSelectItemsCollection } from "../script.js"
+
 function initHeadHandle() {
   // function zone
   function deleteItems() {
@@ -7,7 +10,7 @@ function initHeadHandle() {
       const clonedElement = itemToRemove.cloneNode(true)
       moveItemToSubMenu(true, clonedElement)
       itemToRemove.remove()
-      setallMenuItemsCollection(menu, subMenu) 
+      allSelectItems = setAllSelectItemsCollection(menu, subMenu) 
 
       lastItemToHideIndex--
       numOfRemainingElements--
@@ -16,7 +19,7 @@ function initHeadHandle() {
     }
     if (range >= 200 && numOfHiddenElements !== 0) {
       moveItemToSubMenu(false)
-      setallMenuItemsCollection(menu, subMenu) 
+      allSelectItems = setAllSelectItemsCollection(menu, subMenu) 
 
       lastItemToHideIndex++
       numOfRemainingElements++
@@ -51,58 +54,35 @@ function initHeadHandle() {
       subMenu.firstElementChild.remove()
     }
   }
-  function setallMenuItemsCollection(menu, subMenu) {
-    allMenuItems = []
-    for (let i = 0; i < menu.children.length - 1; i++) {
-      const element = menu.children[i];
-      if (!element.classList.contains('hidden')) {
-        allMenuItems.push(element)
-      }
-    }
-    for (let i = 0; i < subMenu.children.length - 1; i++) {
-      const element = subMenu.children[i];
-      if (!element.classList.contains('hidden')) {
-        allMenuItems.push(element)
-      }
-    }
-  }
-  function resetActiveElement() {
-    for (let i = 0; i < allMenuItems.length; i++) {
-      const item = allMenuItems[i];
-      if (item.classList.contains('active-item')) {
-        item.classList.remove('active-item')
-        return
-      }
-    }
-  }
   //
   // function zone
+
   const [favourite] = document.getElementsByClassName("header__favourite")
   const [bell] = document.getElementsByClassName("header__bell")
   const arrow = document.getElementById("header__drop-arrow")
   const [subMenu] = document.getElementsByClassName("header__submenu-items")
   const [menu] = document.getElementsByClassName("header__menu-items")
   const [burger] = document.getElementsByClassName("header__menu-burger")
-  let allMenuItems = []
+  let allSelectItems = []
   let numOfHiddenElements = 0
   let numOfRemainingElements = document.getElementsByClassName("header__menu-item").length - 1
   let lastItemToHideIndex = numOfRemainingElements - 1
 
   deleteItems()
-  setallMenuItemsCollection(menu, subMenu) 
+  allSelectItems = setAllSelectItemsCollection(menu, subMenu) 
   window.addEventListener('resize', deleteItems)
   header.addEventListener('click', function headerClick(e) {
     //handle bell and favurite
     if (e.target == favourite || e.target == bell) {
-      e.target.classList.toggle('active-item')
+      e.target.classList.toggle('active')
     }
 
     //handle active menu item
     if ((e.target.parentElement == menu && !e.target.classList.contains('header__more-button')) ||
     e.target.parentElement == subMenu) {
       
-      resetActiveElement()
-      e.target.classList.add('active-item')
+      resetActiveElement(allSelectItems)
+      e.target.classList.add('active')
 
       burger.classList.toggle('opened-burger')
       menu.classList.toggle('opened-menu')

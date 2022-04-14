@@ -4,13 +4,17 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/iconsFont.css">
   <link rel="stylesheet" href="assets/css/fonts.css">
-  <link rel="stylesheet" href="assets/css/header.css">
+  
   <link rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/x-icon">
 
-  <script src="./assets/javascript/handlingHeaderItems.js" defer></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/header.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+
+  <script type="module" src="./assets/javascript/header/handlingHeaderItems.js" defer></script>
+  <script type="module" src="./assets/javascript/main/handlingMainItems.js" defer></script>
   
   <title>Pro Spa</title>
 </head>
@@ -22,7 +26,7 @@
           <div class="header__logo">PRO SPA</div>
           <nav>
             <ul class="header__menu-items">
-              <li class="header__menu-item active-item">
+              <li class="header__menu-item active">
                 <span>Сауны</span>
                 <img src="./assets/images/dropArrow.svg" alt="развернуть"></li>
               </li>
@@ -96,6 +100,33 @@
         </div>
       </div>
     </header>
+    <main>
+      <div class="main__container">
+        <div id="breadcrumbs">
+          <span>Строительство</span>
+          <span>Сауна</span>
+        </div>
+        <h1 class="page-title">Строительство саун</h1>
+        <div class="tags">
+          <div class="tags__card">Для квартиры</div>
+          <div class="tags__card">Для дачи</div>
+          <div class="tags__card">Для бизнеса</div>
+          <div class="tags__card">Дизайнерские</div>
+          <div class="tags__card">Недорогие</div>
+          <div class="tags__card">До 40 м</div>
+        </div>
+
+        <div id="settings">
+          <div class="categories">
+            <span class="active">Сначала популярные</span>
+            <span>Новизна</span>
+            <span>Цена</span>
+          </div>
+          <div id="filter"></div>
+        </div>
+        <div id="grid"></div>
+      </div>
+    </main>
   </div>
 </body>
 </html>

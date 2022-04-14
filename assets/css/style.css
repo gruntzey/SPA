@@ -18,6 +18,11 @@ html {
   overflow-x: hidden;
 }
 
+body .active {
+  color: var(--color-active);
+  border-color: var(--color-active);
+}
+
 .wrapper {
   width: 100%;
   min-height: 100%;
@@ -42,8 +47,3 @@ html {
   opacity: 0;
   visibility: hidden;
 }
-
-.overflowAllowed {
-  overflow: auto;
-}
-
