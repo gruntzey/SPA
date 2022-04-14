@@ -81,7 +81,7 @@ function initHeadHandle() {
     if ((e.target.parentElement == menu && !e.target.classList.contains('header__more-button')) ||
     e.target.parentElement == subMenu) {
       
-      resetActiveElement(allSelectItems)
+      resetActiveElement('active',allSelectItems)
       e.target.classList.add('active')
 
       burger.classList.toggle('opened-burger')

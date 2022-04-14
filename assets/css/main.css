@@ -14,7 +14,6 @@ main {
   font-family: Roboto, sans-serif;
   font-size: 14px;
   color: #52575F;
-  align-self: left;
   margin-bottom: 13px;
 }
 
@@ -52,7 +51,6 @@ main {
 #settings {
   height: 32px;
   line-height: 32px;
-  cursor: pointer;
 
   display: flex;
   align-items: center;
@@ -62,12 +60,63 @@ main {
 
   font-family: Gilroy, sans-serif;
   font-weight: 500;
-  font-size: 16px;
+  
 }
 
 .categories > span {
+  cursor: pointer;
   margin-right: 25px;
-} 
+  font-size: 16px;
+}
+
+#filter {
+  content: "hi";
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  font-size: 19px;
+}
+
+#filter::before {
+  padding-right: 9px;
+}
+
+.grid-container {
+  display: flex;
+  width: 100%;
+  transition: width .2s ease-in-out 0s;
+}
+
+.grid-container.grid-container-closed {
+  /* current width + filter-form width + filterform margin */
+  width: calc(100% + 240px + 64px);
+}
+
+#grid {
+  flex-grow: 1;
+  display: grid;
+  gap: 40px 16px;
+  justify-items: left;
+  align-items: start;
+
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-auto-rows: 335px;
+}
+
+#grid > div {
+  background-color: yellow;
+}
+
+#filter-form {
+  /* position: relative; */
+  width: 240px;
+  height: 100px;
+  background-color: aqua;
+  margin-left: 64px;
+
+  left: 100%;
+}
 
 @media screen and (max-width: 860px) {
   #breadcrumbs {

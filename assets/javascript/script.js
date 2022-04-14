@@ -1,8 +1,8 @@
-export function resetActiveElement(...collectionOfElements) {
+export function resetActiveElement(classToRemove, ...collectionOfElements) {
   for (let i = 0; i < [...collectionOfElements][0].length; i++) {
     const item = [...collectionOfElements][0][i];
-    if (item.classList.contains('active')) {
-      item.classList.remove('active')
+    if (item.classList.contains(classToRemove)) {
+      item.classList.remove(classToRemove)
       return
     }
   }
