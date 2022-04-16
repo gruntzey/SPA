@@ -136,11 +136,10 @@ window.addEventListener('load', () => {
     if (e.target.closest('.form-switcher')) {
       const container = e.target.closest('.form-switcher').firstElementChild
       const switcher = container.lastElementChild
-      console.log(switcher)
       const checkbox = switcher.previousElementSibling
-      
       checkbox.checked = !checkbox.checked
       switcher.classList.toggle('item-switcher-switched')
+      
     }
 
     if (e.target.closest('.accordion')) {
