@@ -19,3 +19,6 @@ export function setAllSelectItemsCollection(...allParentElementsContainingsNodes
   }
   return allSelectItems
 }
+export function toggleScroll(elem) {
+  elem.classList.toggle("stop-scrolling");
+}

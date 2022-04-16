@@ -1,5 +1,4 @@
-import { resetActiveElement } from "../script.js"
-import { setAllSelectItemsCollection } from "../script.js"
+import { resetActiveElement, setAllSelectItemsCollection, toggleScroll } from "../script.js"
 
 function initHeadHandle() {
   // function zone
@@ -56,7 +55,7 @@ function initHeadHandle() {
   }
   //
   // function zone
-
+  const [main] = document.getElementsByTagName('main')
   const [favourite] = document.getElementsByClassName("header__favourite")
   const [bell] = document.getElementsByClassName("header__bell")
   const arrow = document.getElementById("header__drop-arrow")
@@ -92,6 +91,7 @@ function initHeadHandle() {
     if (e.target == burger) {
       burger.classList.toggle('opened-burger')
       menu.classList.toggle('opened-menu')
+      if (window.innerWidth < 860) toggleScroll(main)
     }
 
     if (e.target == arrow.parentElement) {

@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'fontIconAll';
   src:
-    url('../fonts/iconFonts/fontIconAll.ttf?waz9sq') format('truetype'),
-    url('../fonts/iconFonts/fontIconAll.woff?waz9sq') format('woff'),
-    url('../fonts/iconFonts/fontIconAll.svg?waz9sq#fontIconAll') format('svg');
+    url('../fonts/iconFonts/fontIconAll.ttf?qkobkk') format('truetype'),
+    url('../fonts/iconFonts/fontIconAll.woff?qkobkk') format('woff'),
+    url('../fonts/iconFonts/fontIconAll.svg?qkobkk#fontIconAll') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -12,6 +12,7 @@
 [class^="icon-"]::before, [class*=" icon-"]::before {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'fontIconAll' !important;
+  speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -23,6 +24,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-categories:before {
+  content: "\e906";
+}
 .icon-filter:before {
   content: "\e904";
 }
