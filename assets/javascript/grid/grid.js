@@ -322,25 +322,3 @@ window.addEventListener('load', () => {
     }
   }
 })
-
-
-
-// {/* <div class="grid-item">
-//   <div class="image-container">
-//     <img  src="./assets/images/saunaImages/image.png" alt="" srcset="">
-//     <div class="dots">
-//       <div class="dot dot-active"></div>
-//       <div class="dot"></div>
-//       <div class="dot"></div>
-//     </div>
-//     <div class="feedback">
-//       <div class="icon-comment">1</div>
-//       <div class="icon-heart">234</div>
-//     </div>
-//   </div>
-//   <div class="description">
-//     <div>Cауна‧такой-то‧размер</div>
-//     <div>Адрес примерный</div>
-//     <div>Тип сауны</div>
-//   </div>
-// </div> */}
