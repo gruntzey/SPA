@@ -161,7 +161,7 @@ main {
 
   cursor: pointer;
   font-family: Gilroy, sans-serif;
-  font-size: 12px;
+  font-size: 16px;
   color: white;
   margin-right: 8px;
   user-select: none;
@@ -173,6 +173,10 @@ main {
 
 .feedback > div:last-child {
   margin-right: 0px;
+}
+
+.feedback > div.liked-item::before {
+  color: red;
 }
 
 .new-image {
@@ -436,6 +440,10 @@ main {
 
   cursor: pointer;
   margin-bottom: 5px;
+
+  font-family: Gilroy, sans-serif;
+  font-weight: 600;
+  font-size: 17px;
 }
 
 /* /// */

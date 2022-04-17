@@ -1,5 +1,6 @@
 import { resetActiveElement, setAllSelectItemsCollection, toggleScroll } from "../script.js"
 
+
 function changeFilterStateContent(filter) {
   let filterContent = window.innerWidth > 860 ? ['Показать фильтр', 'Скрыть фильтр'] : ['Фильтр', 'Скрыть']
   return function() {
@@ -8,26 +9,16 @@ function changeFilterStateContent(filter) {
     filterShowing = !filterShowing
   }
 }
-function openFilterBox() {
-  filterForm.classList.toggle('removed')
-}
-function setCategoriesFilterContent() {
-  for (let i = 0; i < categories.children.length; i++) {
-    const node = categories.children[i];
-    if (node.classList.contains('active')) {
-      categoriesFilter.textContent = node.textContent
-    }
+function giveNamesAccordionsShowAllButtons() {
+  for (let i = 0; i < accordionsShowAllButtons.length; i++) {
+    const button = accordionsShowAllButtons[i];
+    button.textContent = accordionsShowAllButtonsTexts[0]
   }
 }
-function hideAllExcessFilters() {
-  
-  for (let i = 0; i < accordionsContent.length; i++) {
-    const accordion = accordionsContent[i];
-    toggleExcessInputs(accordion)
-    hideAccrdions(accordion)
+function hideAccrdions(accordion) {
+  if (!accordion.previousElementSibling.lastElementChild.classList.contains('accordion-arrow-rotated')) {
+    accordion.classList.toggle('removed')
   }
-  giveNamesAccordionsShowAllButtons()
-  
 }
 function toggleExcessInputs(accordion) {
   let iter = 1
@@ -48,16 +39,14 @@ function toggleExcessInputs(accordion) {
     accordionsShowAllButtons.push(accordion.lastElementChild)
   }
 }
-function giveNamesAccordionsShowAllButtons() {
-  for (let i = 0; i < accordionsShowAllButtons.length; i++) {
-    const button = accordionsShowAllButtons[i];
-    button.textContent = accordionsShowAllButtonsTexts[0]
+function hideAllExcessFilters() {
+  
+  for (let i = 0; i < accordionsContent.length; i++) {
+    const accordion = accordionsContent[i];
+    toggleExcessInputs(accordion)
+    hideAccrdions(accordion)
   }
-}
-function hideAccrdions(accordion) {
-  if (!accordion.previousElementSibling.lastElementChild.classList.contains('accordion-arrow-rotated')) {
-    accordion.classList.toggle('removed')
-  }
+  giveNamesAccordionsShowAllButtons()
 }
 function setSwitchersOn() {
   for (let i = 0; i < switchers.length; i++) {
@@ -67,31 +56,29 @@ function setSwitchersOn() {
     }
   }
 }
-function toggleFilter() {
+
+function openFilterBox() {
+  filterForm.classList.toggle('removed')
+}
+export function toggleFilter() {
   changeFilterState()
   openFilterBox()
 }
+
 const [main] = document.getElementsByTagName('main')
-const [screener] = document.getElementsByClassName('screener')
-const [categories] = document.getElementsByClassName('categories')
-const filter = document.getElementById('filter')
+
+export const filter = document.getElementById('filter')
 const filterForm = document.getElementById('filter-form')
 const [closeFilterForm] = document.getElementsByClassName('filter-form-close')
-const [categoriesFilter] = document.getElementsByClassName('categories-filter')
-const [navigationButtons] = document.getElementsByClassName('navigation-buttons')
 const accordionsContent = document.querySelectorAll(".filter-form-item-content")
 const switchers = document.querySelectorAll('.filter-form-item-switcher')
 const accordionsShowAllButtons = []
 const accordionsShowAllButtonsTexts = ['Посмотреть все', 'Скрыть']
-
 let filterShowing = true
-let allCategoriesSelectItems = setAllSelectItemsCollection(categories)
 const inputAmountLimit = 6
 
 const changeFilterState = changeFilterStateContent(filter)
 changeFilterState()
-
-setCategoriesFilterContent()
 
 hideAllExcessFilters()
 
@@ -102,37 +89,13 @@ if (window.innerWidth < 860) {
   toggleFilter(main)
 }
 
+
 window.addEventListener('load', () => {
-  document.addEventListener('click', (e) => {
-    if (e.target.parentElement == categories) {
-      resetActiveElement('active',allCategoriesSelectItems)
-      e.target.classList.add('active')
-      setCategoriesFilterContent()
-    }
 
-    if (e.target == filter) {
-      toggleFilter()
-      if (window.innerWidth < 860) toggleScroll(main)
-    }
+  filterForm.addEventListener('click', function filterFormHandle(e) {
 
-    if (e.target == categoriesFilter) {
-      categories.classList.toggle('revealed')
-      screener.classList.toggle('removed')
-    }
-
-    if (e.target == screener) {
-      screener.classList.toggle('removed')
-      categories.classList.toggle('revealed')
-    }
-
-    if (e.target.parentElement == navigationButtons) {
-      resetActiveElement('active-navigation-button', navigationButtons.children)
-      e.target.classList.add('active-navigation-button')
-    }
     
-  })
 
-  filterForm.addEventListener('click', function accordionHandle(e) {
     if (e.target.closest('.form-switcher')) {
       const container = e.target.closest('.form-switcher').firstElementChild
       const switcher = container.lastElementChild
@@ -167,3 +130,4 @@ window.addEventListener('load', () => {
     }
   })
 })
+
