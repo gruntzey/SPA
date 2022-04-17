@@ -55,9 +55,20 @@ function reCreatingGrid() {
       </div>
       `)
 
-      //если 1 картинка, то удалить точки для текущего элемента
+      //можно было не удалять элементы после их создания... можно было
+      //просто создавать, но если бы я создавал элементы вместо
+      //создания HTML выше, то вышло бы слишком много строк кода
+      //я понимаю что это не оптимальное решение
       if (numberOfDots == 1) {
         document.querySelectorAll('.dots')[grid.children.length - 1].classList.add('removed')
+      }
+
+      const elemDate = new Date(element.data.time).getTime()
+      const curDate = new Date().getTime()
+      const TimeDifference = (curDate - elemDate)
+      console.log(TimeDifference)
+      if (TimeDifference > 47925577467) {
+        document.querySelectorAll('.new-image')[grid.children.length - 1].classList.add('removed')
       }
     }
   }
@@ -67,7 +78,12 @@ function sortGridItems(elem) {
   sortedData =  data.items.sort((a, b)=> {
   const bValue = b.data[dataattr]
   const aValue = a.data[dataattr]
-  return aValue - bValue
+  if (!dataattr == 'time') {
+    return aValue - bValue
+  } else {
+    return bValue - aValue
+  }
+  
   })
   reCreatingGrid()
 }
