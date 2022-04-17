@@ -143,10 +143,8 @@ window.addEventListener('load', () => {
     }
 
     if (e.target.closest('.accordion')) {
-      console.log('hi')
       const theHeader = e.target.closest('.filter-form-item-header')
       const arrow = theHeader.children[1]
-      console.log(theHeader)
       const contentBlock = theHeader.nextElementSibling
 
       arrow.classList.toggle('accordion-arrow-rotated')
@@ -163,7 +161,7 @@ window.addEventListener('load', () => {
       }
     }
 
-    if (e.target == closeFilterForm) {
+    if (e.target.closest('.filter-form-close')) {
       toggleFilter()
       if (window.innerWidth < 860) toggleScroll(main)
     }
