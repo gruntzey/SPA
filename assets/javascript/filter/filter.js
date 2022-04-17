@@ -128,6 +128,11 @@ window.addEventListener('load', () => {
       toggleFilter()
       if (window.innerWidth < 860) toggleScroll(main)
     }
+    if (e.target.classList.contains('clear-filter')) {
+      e.preventDefault()
+      resetActiveElement('item-switcher-switched', switchers)
+      filterForm.reset()
+    }
   })
 })
 
