@@ -37,7 +37,7 @@ function reCreatingGrid() {
       grid.insertAdjacentHTML('beforeend', `
       <div class="grid-item" data-price="${element.data.price}" data-popularity="${element.data.pupularity}" data-time="${element.data.time}" data-id="${element.id}">
         <div class="image-container">
-          <img  src="${element.images[0]}" alt="картинка">
+          <img  src="${element.images[0]}" alt="картинка" draggable="false">
           <div class="dots">
             ${dotsDivs}
           </div>
@@ -66,8 +66,7 @@ function reCreatingGrid() {
       const elemDate = new Date(element.data.time).getTime()
       const curDate = new Date().getTime()
       const TimeDifference = (curDate - elemDate)
-      console.log(TimeDifference)
-      if (TimeDifference > 47925577467) {
+      if (TimeDifference > 37558242981) {
         document.querySelectorAll('.new-image')[grid.children.length - 1].classList.add('removed')
       }
     }
@@ -108,7 +107,6 @@ function reCreateNavigationButtons() {
 
   let setOne = curPage > numOfButtons ? true : false
 
-  console.log('num of buttons = '+ numOfButtons)
   let temp = 1
   for (let i = 0; i < numOfButtons; i++) {
     const button = document.createElement('div')
@@ -166,8 +164,6 @@ reCreateNavigationButtons()
 
 
 window.addEventListener('load', () => {
-
-
   document.addEventListener('click', function mainContentHandle(e) {
     if (e.target.parentElement == categories) {
       resetActiveElement('active',selectableCategories)
@@ -197,8 +193,6 @@ window.addEventListener('load', () => {
       e.target.classList.add('active-navigation-button')
       curPage = e.target.textContent
       
-      
-      console.log(gridRange)
       reCreatingGrid()
     }
 
@@ -230,7 +224,6 @@ window.addEventListener('load', () => {
       })
       const numOfImages = metaElement.images.length
       
-      
       if (numOfImages > 1) {
         imageLeftEdge = e.target.getBoundingClientRect().left
         imageRightEdge = e.target.getBoundingClientRect().right
@@ -253,6 +246,81 @@ window.addEventListener('load', () => {
       }
     }
   })
+
+  if (window.innerWidth < 860) {
+    let startX,
+    dist = 0,
+    threshold = 50,
+    allowedTime = 500,
+    elapsedTime,
+    startTime
+
+    grid.addEventListener('touchstart', function(e){
+      if (e.target.tagName == 'IMG') {
+        const touchobj = e.changedTouches[0]
+        startX = touchobj.pageX
+        startTime = e.timeStamp
+        e.preventDefault()
+      }
+    })
+  
+    grid.addEventListener('touchmove', function(e){
+      if (e.target.tagName == 'IMG') {}
+        e.preventDefault()
+    })
+  
+    grid.addEventListener('touchend', function(e){
+      if (e.target.tagName == 'IMG') {
+        const touchobj = e.changedTouches[0]
+        let swipeDirection
+
+        dist = touchobj.pageX - startX
+        elapsedTime = e.timeStamp - startTime
+        if ((elapsedTime <= allowedTime && dist >= threshold)) {
+          swipeDirection = 'right'
+          handleImageSwipe(swipeDirection, e.target)
+        } else if ((elapsedTime <= allowedTime && -dist >= threshold)) {
+          swipeDirection = 'left'
+          handleImageSwipe(swipeDirection, e.target)
+        } 
+        e.preventDefault()
+      }
+    })
+    function handleImageSwipe(swipeDirection, img) {
+      const elemId = img.closest('[data-id]').dataset.id
+      const metaElement = data.items.find((el, i) => {
+        return el.id == elemId
+      })
+      let src = img.getAttribute('src')
+      let idx = metaElement.images.findIndex(el => {
+        return el == src
+      })
+      const nextImg = metaElement.images[idx + 1]
+      const prevImg = metaElement.images[idx - 1]
+
+      const dots = img.closest('.grid-item').querySelectorAll('.dot')
+      resetActiveElement('dot-active', dots)
+      
+
+      if (swipeDirection == 'right') {
+        if (nextImg) {
+          img.setAttribute('src', nextImg)
+          dots[idx + 1].classList.add('dot-active')
+        } else {
+          img.setAttribute('src', metaElement.images[0])
+          dots[0].classList.add('dot-active')
+        }
+      } else if (swipeDirection == 'left') {
+        if (prevImg) {
+          img.setAttribute('src', prevImg)
+          dots[idx - 1].classList.add('dot-active')
+        } else {
+          img.setAttribute('src', metaElement.images[metaElement.images.length - 1])
+          dots[metaElement.images.length - 1].classList.add('dot-active')
+        }
+      }
+    }
+  }
 })
 
 
