@@ -147,9 +147,17 @@ header::after {
     opacity: 0.5;
   }
 
+  .icon-bell:hover.active {
+    opacity: 1;
+  }
+
   .icon-favourite:hover {
     color: var(--color-active);
     opacity: 0.5;
+  }
+
+  .icon-favourite:hover.active {
+    opacity: 1;
   }
 
   .header__border-button:hover {

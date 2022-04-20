@@ -3,7 +3,7 @@
 // }
 
 function getImg(num) {
-  return `../../assets/images/saunaImages/image${num}.png`
+  return `./assets/images/saunaImages/image${num}.png`
 }
 
 export const listOfItems = {
