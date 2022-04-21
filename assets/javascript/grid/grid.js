@@ -249,6 +249,8 @@ window.addEventListener('load', () => {
 
   if (window.innerWidth < 860) {
     let startX,
+    strartY,
+    curY,
     dist = 0,
     threshold = 50,
     allowedTime = 500,
@@ -260,13 +262,13 @@ window.addEventListener('load', () => {
         const touchobj = e.changedTouches[0]
         startX = touchobj.pageX
         startTime = e.timeStamp
-        e.preventDefault()
       }
     })
   
     grid.addEventListener('touchmove', function(e){
       if (e.target.tagName == 'IMG') {}
-        e.preventDefault()
+        console.log(e.changedTouches[0])
+        // e.preventDefault()
     })
   
     grid.addEventListener('touchend', function(e){
@@ -283,7 +285,7 @@ window.addEventListener('load', () => {
           swipeDirection = 'left'
           handleImageSwipe(swipeDirection, e.target)
         } 
-        e.preventDefault()
+        // e.preventDefault()
       }
     })
     function handleImageSwipe(swipeDirection, img) {
