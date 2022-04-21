@@ -268,7 +268,6 @@ window.addEventListener('load', () => {
     grid.addEventListener('touchmove', function(e){
       if (e.target.tagName == 'IMG') {}
         console.log(e.changedTouches[0])
-        // e.preventDefault()
     })
   
     grid.addEventListener('touchend', function(e){
@@ -284,8 +283,7 @@ window.addEventListener('load', () => {
         } else if ((elapsedTime <= allowedTime && -dist >= threshold)) {
           swipeDirection = 'left'
           handleImageSwipe(swipeDirection, e.target)
-        } 
-        // e.preventDefault()
+        }
       }
     })
     function handleImageSwipe(swipeDirection, img) {
@@ -304,7 +302,7 @@ window.addEventListener('load', () => {
       resetActiveElement('dot-active', dots)
       
 
-      if (swipeDirection == 'right') {
+      if (swipeDirection == 'left') {
         if (nextImg) {
           img.setAttribute('src', nextImg)
           dots[idx + 1].classList.add('dot-active')
@@ -312,7 +310,7 @@ window.addEventListener('load', () => {
           img.setAttribute('src', metaElement.images[0])
           dots[0].classList.add('dot-active')
         }
-      } else if (swipeDirection == 'left') {
+      } else if (swipeDirection == 'right') {
         if (prevImg) {
           img.setAttribute('src', prevImg)
           dots[idx - 1].classList.add('dot-active')
